@@ -160,6 +160,8 @@ $(document).ready(function(){
     function cars() {
         var table = $("#carsList").DataTable({  
             order:[],
+            // serverSide: true,
+            // processing: true,
             ajax: {
                 url: "/home/data",
                 type: "GET",

@@ -28,11 +28,11 @@ class CarsController extends Controller
 
     public function getData()
     {
-       
         $cars = Car::select('id','name','brand','color')
             ->orderBy('id', 'DESC')
             ->get();
         return response()->json(['data'=>$cars]);  
+        // return Datatables::of($cars)->make(true);
     }
 
     /**
