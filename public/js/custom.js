@@ -21,7 +21,7 @@ $(document).ready(function($){
                             <div class='btn-group' >
                                 <span data-placement='top' data-toggle='tooltip' title='Edit Car'>
                                     <button type='button' class='btn btn-sm btn-table btn-primary' 
-                                    data-name=${full.name} data-brand=${full.brand} data-color=${full.color}
+                                    data-name=${full.name} data-brand=${full.brand} data-color='${full.color}'
                                     data-car='{
                                         "name":"${full.name}",
                                         "brand":"${full.brand}",
@@ -123,6 +123,8 @@ $(document).ready(function($){
             var name = button.data('name');
             var brand = button.data('brand');
             var color = button.data('color');
+            var color2 = button.data('color')
+
             console.log(color);
             $('#car_id').val(id);
             $('#car_name_edit').val(name);
