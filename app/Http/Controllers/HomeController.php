@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Car;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
+    }
+
+    // public function response()
+    // {
+    //     return response()->json([ 
+    //         'cars'=> [ 
+    //             'registration'=> 
+    //             'ABC001', 
+    //             'dateRegistered'=> 
+    //             '2019-01-01', 
+    //             'color'=> 'black', 
+    //             'make'=> 'tesla', 
+    //             'model'=> 's'
+    //             ]
+    //         ], 200);
+    // }
+}
