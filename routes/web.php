@@ -17,10 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'CarsController@index');
-Route::get('/home/data', 'CarsController@getData');
-Route::post('home/addcar','CarsController@store');
-Route::post('home/update','CarsController@update');
-Route::post('home/delete','CarsController@destroy');
-// Route::get('/home', 'HomeController@index')->name('home');
-
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/home', 'CarsController@index');
+    Route::get('/home/data', 'CarsController@getData');
+    Route::post('home/addcar','CarsController@store');
+    Route::post('home/update','CarsController@update');
+    Route::post('home/delete','CarsController@destroy');
+    // Route::get('/home', 'HomeController@index')->name('home');
+});
