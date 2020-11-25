@@ -32,7 +32,8 @@ class CarsController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
         // return response()->json(['data'=>$cars]);  
-        return Datatables::of(Car::query())->make(true);
+        return Datatables::of($cars)->make(true);
+        // return Datatables::of(Car::query())->make(true);
     }
 
     /**
@@ -98,7 +99,7 @@ class CarsController extends Controller
         $validatedData = $request->validate([
             'car_name_edit'   => 'required|regex:/^[a-zA-Z]+$/u',
             'car_brand_edit'  => 'required|regex:/^[a-zA-Z]+$/u',
-            'car_color_edit'  => 'required|regex:/^[a-zA-Z]+$/u',
+            'car_color_edit'  => 'required',
         ]);
         
         // dd($request->all());

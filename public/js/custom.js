@@ -5,6 +5,7 @@ $(document).ready(function($){
             serverSide: true,
             processing: true,
             ajax: {
+                dataType: 'json',
                 url: "/home/data",
                 type: "GET",
             },
@@ -14,48 +15,49 @@ $(document).ready(function($){
                 {data: 'brand'},
                 {data: 'color'},
                 {
-                        data: "id",
-                        render: function (data, type, full) {
-                            let editBtn =  `
-                                <div class='btn-group' >
-                                    <span data-placement='top' data-toggle='tooltip' title='Edit Car'>
-                                        <button type='button' class='btn btn-sm btn-table btn-primary' 
-                                        data-name=${full.name} data-brand=${full.brand} data-color=${full.color}
-                                        data-car='{
-                                            "name":"${full.name}",
-                                            "brand":"${full.brand}",
-                                            "color":"${full.color}",
-                                        }'
-                                        data-id=${data} data-toggle='modal' id='edit_car_modal_button' data-target='#edit_car_modal'>
-                                        <i class="fa fa-edit"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            `;
+                    data: "id",
+                    render: function (data, type, full) {
+                        let editBtn =  `
+                            <div class='btn-group' >
+                                <span data-placement='top' data-toggle='tooltip' title='Edit Car'>
+                                    <button type='button' class='btn btn-sm btn-table btn-primary' 
+                                    data-name=${full.name} data-brand=${full.brand} data-color=${full.color}
+                                    data-car='{
+                                        "name":"${full.name}",
+                                        "brand":"${full.brand}",
+                                        "color":"${full.color}",
+                                    }'
+                                    data-id=${data} data-toggle='modal' id='edit_car_modal_button' data-target='#edit_car_modal'>
+                                    <i class="fa fa-edit"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        `;
+                        
 
-                            let deleteBtn =  `
-                                <div class='btn-group'>
-                                    <span data-placement='top' data-toggle='tooltip' title='Delete Car'>
-                                        <button type='button' class='btn btn-sm btn-table btn-danger'
-                                        data-id=${data} data-toggle='modal' id='delete_car_modal_button' data-target='#delete_car_modal'>
-                                        <i class="fa fa-trash"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            `;
+                        let deleteBtn =  `
+                            <div class='btn-group'>
+                                <span data-placement='top' data-toggle='tooltip' title='Delete Car'>
+                                    <button type='button' class='btn btn-sm btn-table btn-danger'
+                                    data-id=${data} data-toggle='modal' id='delete_car_modal_button' data-target='#delete_car_modal'>
+                                    <i class="fa fa-trash"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        `;
 
-                            return editBtn + deleteBtn
-                        }
+                        return editBtn + deleteBtn
                     }
-                ],
-                columnDefs: [
-                    {   
-                        "targets": [0],
-                        "visible": false,
-                        "searchable": false
-                    },
-                ]
-            }); 
+                }
+            ],
+            columnDefs: [
+                {   
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                },
+            ]
+        }); 
     }
     
     cars();
@@ -121,6 +123,7 @@ $(document).ready(function($){
             var name = button.data('name');
             var brand = button.data('brand');
             var color = button.data('color');
+            console.log(color);
             $('#car_id').val(id);
             $('#car_name_edit').val(name);
             $('#car_brand_edit').val(brand);
@@ -210,6 +213,7 @@ $(document).ready(function($){
                 });
             },
             complete: function (res) {
+                $('#delete_car_container').waitMe('hide');
                 $('.modal-backdrop').remove();
             }
         })
