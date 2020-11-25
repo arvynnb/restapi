@@ -31,8 +31,8 @@ class CarsController extends Controller
         $cars = Car::select('id','name','brand','color')
             ->orderBy('id', 'DESC')
             ->get();
-        return response()->json(['data'=>$cars]);  
-        // return Datatables::of($cars)->make(true);
+        // return response()->json(['data'=>$cars]);  
+         return Datatables::of($cars)->make(true);
     }
 
     /**
