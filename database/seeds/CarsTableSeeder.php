@@ -13,7 +13,7 @@ class CarsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Car::class, 5000)->create()->each(function ($u) {
+        factory(App\Car::class, 50000)->create()->each(function ($u) {
             $u->save(factory(App\Car::class)->make());
         });
     }
