@@ -23,13 +23,22 @@
                             <table id="carsList" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        {{-- <th>#</th> --}}
                                         <th>Name</th>
                                         <th>Brand</th>
                                         <th>Color</th>
                                         <th></th>
                                     </tr>
-                                </thead>
+                                </thead> 
+                                <tfoot>
+                                    <tr>
+                                        {{-- <th>#</th> --}}
+                                        <th>Name</th>
+                                        <th>Brand</th>
+                                        <th>Color</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                                 <tbody class="text-center">
                                 </tbody>
                             </table>
@@ -44,7 +53,7 @@
 
 <div class="modal fade" id="add_car_modal" tabindex="-1" role="dialog" style="display: none;">
     <div class="modal-dialog" role="document">
-        <form method="POST" id="add_car_details" action="/home/addcar" >
+        <form method="POST" id="add_car_details" action="" >
         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <div class="modal-content">
                 <div class="modal-header">
@@ -77,7 +86,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="add_car_button" class="btn btn-primary waves-effect" 
+                    <button type="submit" id="add_car_button" class="btn btn-primary waves-effect" 
                         data-toggle="modal" >Save</button>
                     <button type="button" class="btn btn-danger waves-effect closeModal" data-dismiss="modal">Close</button>
                 </div>
@@ -122,7 +131,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="edit_car_button" class="btn btn-primary waves-effect" 
+                    <button type="submit" id="edit_car_button" class="btn btn-primary waves-effect" 
                         data-toggle="modal" >Save</button>
                     <button type="button" class="btn btn-danger waves-effect closeModal" data-dismiss="modal">Close</button>
                 </div>

@@ -1,7 +1,7 @@
 $(document).ready(function($){
     function cars() {
         var table = $("#carsList").DataTable({  
-            order:[[0,"desc"]],
+            order:[[3,"desc"]],
             serverSide: true,
             processing: true,
             ajax: {
@@ -10,7 +10,7 @@ $(document).ready(function($){
                 type: "GET",
             },
             columns: [
-                {data: 'id'},
+                // {data: 'id'},
                 {data: 'name'},
                 {data: 'brand'},
                 {data: 'color'},
@@ -50,19 +50,21 @@ $(document).ready(function($){
                     }
                 }
             ],
-            columnDefs: [
-                {   
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                },
-            ]
+            // columnDefs: [
+            //     {   
+            //         "targets": [0],
+            //         "visible": false,
+            //         "searchable": false
+            //     },
+            // ]
         }); 
     }
     
     cars();
 
-    $('#add_car_button').on('click', function () {
+    $('#add_car_details').submit(function (e) {
+        e.preventDefault();
+    // $('#add_car_button').on('click', function () {
         $('#add_car_container').waitMe({
             effect: 'bounce',
             text: 'Please wait...',
@@ -132,7 +134,9 @@ $(document).ready(function($){
             $('#car_color_edit').val(color);
     });
 
-    $('#edit_car_button').on('click', function () {
+    $('#edit_car_details').submit(function (e) {
+        e.preventDefault();
+    // $('#edit_car_button').on('click', function () {
         $('#edit_car_container').waitMe({
             effect: 'bounce',
             text: 'Please wait...',

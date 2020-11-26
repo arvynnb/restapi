@@ -83,6 +83,7 @@
         </main>
     </div>
         <!-- Scripts -->
+        
         <!-- Jquery Core Js -->
         <script src="{{URL::asset('plugins/jquery/jquery.min.js')}}"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
