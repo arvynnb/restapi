@@ -16,14 +16,6 @@ class CarsController extends Controller
     public function index()
     {
         return view('/home');
-        // $cars = Car::select('id','name','brand','color')->get();
-        // return response()->json(['data'=>$cars]);   
-        // return Datatables::of($cars)
-        //     ->addColumn('action',function($cars){
-        //         return '<a href=#edit-'.$cars->id. ' class="btn btn-xs btn-info">edit</a>';
-        //     })
-        //     ->editColumn('id','ID-{{$id}}')
-        //     ->make(true);
     }
 
     public function getData()
@@ -31,8 +23,8 @@ class CarsController extends Controller
         $cars = Car::select('id','name','brand','color')
             ->orderBy('id', 'DESC')
             ->get();
-        // return response()->json(['data'=>$cars]);  
         return Datatables::of($cars)->make(true);
+        // return response()->json(['data'=>$cars]);  
         // return Datatables::of(Car::query())->make(true);
     }
 
@@ -55,9 +47,9 @@ class CarsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|regex:/^[a-zA-Z]+$/u',
-            'brand' => 'required|regex:/^[a-zA-Z]+$/u',
-            'color' => 'required|regex:/^[a-zA-Z]+$/u'
+            'name' => 'required|string',
+            'brand' => 'required|string',
+            'color' => 'required|string'
         ]);
 
         $cars =  Car::create($request->all());
@@ -97,12 +89,11 @@ class CarsController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-            'car_name_edit'   => 'required|regex:/^[a-zA-Z]+$/u',
-            'car_brand_edit'  => 'required|regex:/^[a-zA-Z]+$/u',
-            'car_color_edit'  => 'required',
+            'car_name_edit'   => 'required|string',
+            'car_brand_edit'  => 'required|string',
+            'car_color_edit'  => 'required|string',
         ]);
         
-        // dd($request->all());
         $car = Car::where('id',$request->car_id)->first();
         if ($car) {
             $car->update([
@@ -111,6 +102,7 @@ class CarsController extends Controller
                 'color' => $validatedData['car_color_edit']
             ]);
             return response()->json(['status'=>'success','is_success' => true, 'message' => 'Car update successfully']);
+        
         }
     }
 
@@ -124,6 +116,7 @@ class CarsController extends Controller
     {
         $cars = Car::find($request->car_id_delete);
         $cars->delete();
-       return response()->json(['status'=>'success','is_success' => true, 'message' => 'Car deleted successfully']);
+
+        return response()->json(['status'=>'success','is_success' => true, 'message' => 'Car deleted successfully']);
     }
 }
