@@ -20,8 +20,10 @@ Auth::routes();
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/home', 'CarsController@index');
     Route::get('/home/data', 'CarsController@getData');
-    Route::post('home/addcar','CarsController@store');
-    Route::post('home/update','CarsController@update');
-    Route::post('home/delete','CarsController@destroy');
+    Route::post('/home/addcar','CarsController@store');
+    Route::post('/home/update','CarsController@update');
+    Route::post('/home/delete','CarsController@destroy');
+
+    Route::delete('/home/deleteSelectedCars', 'CarsController@deleteSelectedCars');
     // Route::get('/home', 'HomeController@index')->name('home');
 });

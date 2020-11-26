@@ -119,4 +119,15 @@ class CarsController extends Controller
 
         return response()->json(['status'=>'success','is_success' => true, 'message' => 'Car deleted successfully']);
     }
+
+    public function deleteSelectedCars(Request $request)
+    {
+        if(!$request->ids){
+            return response()->json(['status'=>'error','is_success' => false, 'message' => 'Please Select item']);
+        }
+        $cars = Car::whereIn('id',$request->ids);
+        $cars->delete();
+        return response()->json(['status'=>'success','is_success' => true, 'message' => 'Selected car deleted successfully']);
+   
+    }
 }

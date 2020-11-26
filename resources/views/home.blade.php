@@ -5,11 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header" style="display:flex; justify-content:space-between;">
+                <div class="card-header">
                     Dashboard
+                    <div style="display:flex; justify-content:flex-end;">
                         <button class="btn btn-success" data-toggle='modal'
                         id='add_car_modal_button' 
                         data-target='#add_car_modal'>Add</button>
+                        
+                        <button class="btn btn-danger" data-toggle='modal'
+                        id='deleteAll_car_modal' 
+                        data-target='#deleteAllSelected_car_modal'>Delete all</button>
+                    </div>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -21,18 +27,21 @@
                     <div class="body" id="">
                         <div class="table-responsive">
                             <table id="carsList" class="table table-bordered table-striped table-hover dataTable">
-                                <thead>
+                               
+                                <thead class="text-center" >
                                     <tr>
-                                        {{-- <th>#</th> --}}
+                                        <th>
+                                            <input type="checkbox" name="checkAll" id="checkAll">
+                                        </th>
                                         <th>Name</th>
                                         <th>Brand</th>
                                         <th>Color</th>
                                         <th></th>
                                     </tr>
                                 </thead> 
-                                <tfoot>
+                                <tfoot class="text-center" >
                                     <tr>
-                                        {{-- <th>#</th> --}}
+                                        <th></th>
                                         <th>Name</th>
                                         <th>Brand</th>
                                         <th>Color</th>
@@ -152,6 +161,28 @@
                         <input type="hidden" name="car_id_delete" id="car_id_delete">
                     <div class="modal-footer">
                         <button type="button" id="delete_car_button" class="btn btn-primary waves-effect" 
+                            data-toggle="modal" >Delete</button>
+                        <button type="button" class="btn btn-danger waves-effect closeModal"  data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteAllSelected_car_modal" tabindex="-1" role="dialog" style="display: none;">
+    @method('delete');
+    <div class="modal-dialog" role="document">
+        <form method="POST" id="deleteAllSelected_car_details" action="" >
+            <div class="modal-content">
+                <div class="modal-body" id="delete_car_container">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">Delete All Selected</h4>
+                    </div>
+                        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="selectAll_car_id_delete" id="selectAll_car_id_delete">
+                    <div class="modal-footer">
+                        <button type="button" id="deleteAllSelected_car_button" class="btn btn-primary waves-effect" 
                             data-toggle="modal" >Delete</button>
                         <button type="button" class="btn btn-danger waves-effect closeModal"  data-dismiss="modal">Close</button>
                     </div>
